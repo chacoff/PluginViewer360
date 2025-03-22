@@ -1,0 +1,119 @@
+{% extends "app/plugins/templates/base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<script defer src="./three.min.js"></script>
+<script defer src="./panolens.min.js"></script>
+<script defer src="./viewer360.js"></script>
+
+<style>
+    #viewer-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: black;
+        z-index: 9999;
+    }
+
+    #viewer {
+        width: 100%;
+        height: 100vh;
+    }
+
+    #status {
+       position: absolute;
+       top: 16px;
+       right: 16px;
+       background: rgba(0,0,0,0.5);
+       color: white;
+       padding: 5px 10px;
+       z-index: 100;
+    }
+
+    #closeButton {
+        position: absolute;
+        padding: 16px 20px;
+        background: #FF6347;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 4px;
+        top: 16px;
+        left: 16px;
+        display: none;
+        z-index: 1000;
+    }
+
+    #dropZone {
+        width: 100%;
+        height: 120px;
+        border: 2px dashed #ccc;
+        background: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 16px;
+        color: #555;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        border-radius: 10px;
+    }
+
+    /* Hover Effect */
+    #dropZone.hover {
+        background: #e0f7fa;
+        border-color: #007bff;
+        color: #007bff;
+    }
+
+    /* Upload Icon */
+    .upload-icon {
+        width: 40px;
+        height: 40px;
+        background: #007bff;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-bottom: 5px;
+    }
+
+    /* Clickable Text */
+    #dropZone span {
+        color: #007bff;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
+
+<h3>{% trans 'Panorama' %} <small>360° Panorama Viewer</small></h3>
+<br />
+
+<!-- Drop Zone -->
+<div id="dropZone">
+    <div class="upload-icon">+</div>
+    <p id="clickToUpload">Drop your image here or <span>click to browse</span></p>
+</div>
+
+<p style="text-align: center; font-size: 12px">Drag to <b>Rotate</b> or Wheel to <b>Zoom in/out</b></p>
+
+<!-- Panorama Viewer (Initially Hidden) -->
+<div id="viewer-container">
+    <div id="viewer"></div>
+    <div id="status">Initializing...</div>
+    <button id="closeButton" onclick="closeViewer()">Close</button>
+</div>
+
+
+{% endblock %}
