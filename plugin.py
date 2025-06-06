@@ -19,7 +19,7 @@ from app.plugins import PluginBase, Menu, MountPoint
 class Plugin(PluginBase):
 
     def main_menu(self):
-        return [Menu(_("360 Viewer"), self.public_url(''), "fa fa-camera-retro fa-fw")]
+        return [Menu(_("Vista-360"), self.public_url(''), "fa fa-circle-notch fa-fw")]
 
     def app_mount_points(self):
 

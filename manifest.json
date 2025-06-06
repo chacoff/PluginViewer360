@@ -2,7 +2,7 @@
   "name": "Viewer360",
   "webodmMinVersion": "0.1.0",
   "description": "A plugin for 360 drone Panorama",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Jaime Chacoff",
   "email": "jaime.gomez@usach.cl",
   "repository": "",
